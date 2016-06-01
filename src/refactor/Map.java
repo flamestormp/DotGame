@@ -26,10 +26,12 @@ public class Map {
 	public Dot selectObj(int x, int y, int turn){
 		// just make sure you don't select nonexistent dot
 		while(true){
-			if(map[x][y] == null || map[x][y].Team == turn){
+			if(map[x][y] == null || map[x][y].Team != turn){
+				System.out.println("error");
 				return null;
 			}
 			else{
+				System.out.println("in the green");
 				break; // kills loop
 			}
 		}
@@ -37,7 +39,7 @@ public class Map {
 	}
 	
 	public void moveObj(int x, int y, Dot dot){
-			if(dot != null){
+		if(dot != null){
 			int mov = dot.getMov();
 			//absolute values for absolute differences
 			int xdiff = Math.abs(dot.getXposition() - x);
@@ -45,9 +47,9 @@ public class Map {
 		
 			if(xdiff <= mov && ydiff <= mov){
 				map[x][y] = dot;
+				map[dot.getXposition()][dot.getYposition()] = null;
 				dot.setXposition(x);
 				dot.setYposition(y);
-				map[dot.getXposition()][dot.getYposition()] = null;
 				consume(dot);
 			}
 		}

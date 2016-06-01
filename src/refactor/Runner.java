@@ -14,9 +14,9 @@ public class Runner {
 	static int toggle = 0; // 0 = unselected, 1 = selected
 	static int xpos;
     static int ypos;
-	
+    static int turn = 1;
+    
 	public static void main(String[] args){
-		
 		JFrame frame = new JFrame("DotGame");
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,14 +31,15 @@ public class Runner {
 				ypos = e.getY();
 			    System.out.print(xpos+","+ypos +"toggle: ");
 			    if(toggle == 0){
-			 		//tolerance 5 pixels on each side of click
+			    	//tolerance 5 pixels on each side of click
 			 		for(int xsearch = (xpos-10); xsearch < (xpos+10); xsearch++){
 			 			for(int ysearch = (ypos-10); ysearch < (ypos+10); ysearch++){
 			 				if(map.getMap()[xsearch][ysearch] != null){
-			 					tempdot = map.selectObj(xsearch,
-			 					ysearch,1);
+			 					tempdot = map.selectObj(xsearch, ysearch, turn);
+			 					if(tempdot != null){
 			 					toggle = 1;
 			 					System.out.println(toggle);
+			 					}
 			 				}
 			 			}
 			 		}
@@ -46,6 +47,10 @@ public class Runner {
 			 	else if(toggle == 1){
 			 		map.moveObj(xpos, ypos, tempdot);
 			 		toggle = 0;
+			 		
+			 		if(turn == 0) turn = 1;
+			 		else turn = 0;
+			 		
 			 		System.out.println(toggle);
 			 	}
 			    panel.drawing();
@@ -70,10 +75,6 @@ public class Runner {
 			System.out.println("Black Wins!");
 		else if(black_count == 0)
 			System.out.println("White Wins!");
-	}
-	
-	static void draw(){
-		//update GUI
 	}
 }
 	

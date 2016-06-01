@@ -5,7 +5,7 @@ import java.awt.*;
 public class Panel extends JPanel{
 	
 	private static final long serialVersionUID = 1L; //something eclipse told me to do
-	Map map = new Map();
+	Map map = Runner.map;
 	Dot[][] mapper = map.getMap();
 	
 	public void drawing(){
@@ -20,7 +20,6 @@ public class Panel extends JPanel{
 		
 		disp.setColor(Color.RED);
 		disp.fillRect(Runner.xpos, Runner.ypos, 10, 10);
-		
 		
 		for(int x = 0; x < 1000; x++){
 			for(int y = 0; y < 1000; y++){
