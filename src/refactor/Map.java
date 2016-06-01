@@ -73,10 +73,10 @@ public class Map {
 		int xmax = xpos+dot.getRange();
 		int ymin = ypos-dot.getRange();
 		int ymax = ypos+dot.getRange();
-		if(xmin < 0) xmin = 0;
-		if(xmax > 999) xmax = 999;
-		if(ymin < 0) ymin = 0;
-		if(ymax > 999) ymax = 999;
+		if(xmin < 0){ xmin = 0; }
+		if(xmax > 999){ xmax = 999; }
+		if(ymin < 0){ ymin = 0; }
+		if(ymax > 999){ ymax = 999; }
 		
 		//search systematically like a box
 		for(int xsearch = xmin; xsearch < xmax; xsearch++){
@@ -85,14 +85,11 @@ public class Map {
 				//1. if array value is empty (can't operate on empty)
 				//2. determine if coordinate is the same (can't consume yourself)
 				if((map[xsearch][ysearch] != null) && 
-						(xsearch != xpos && ysearch != ypos)){
+						(xsearch != xpos || ysearch != ypos)){
 					
-					if(map[xsearch][ysearch].Team == 0){
-						whitetemp++;
-					}
-					else{
-						blacktemp++;
-					}
+					if(map[xsearch][ysearch].Team == 0){ whitetemp++; }
+					else{ blacktemp++; }
+					
 					consumeCountPool += map[xsearch][ysearch].getConsumeCount();
 					map[xsearch][ysearch] = null;
 				}
