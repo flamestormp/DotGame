@@ -29,7 +29,7 @@ public class Runner {
 			public void mouseClicked(MouseEvent e){
 				xpos = e.getX();
 				ypos = e.getY();
-			    System.out.println(xpos+","+ypos +"toggle:" + toggle);
+			    System.out.print(xpos+","+ypos +"toggle: ");
 			    if(toggle == 0){
 			 		//tolerance 5 pixels on each side of click
 			 		for(int xsearch = (xpos-10); xsearch < (xpos+10); xsearch++){
@@ -38,19 +38,15 @@ public class Runner {
 			 					tempdot = map.selectObj(xsearch,
 			 					ysearch,1);
 			 					toggle = 1;
+			 					System.out.println(toggle);
 			 				}
 			 			}
 			 		}
 			 	}
 			 	else if(toggle == 1){
-			 		for(int xsearch = (xpos-10); xsearch < (xpos+10); xsearch++){
-			 			for(int ysearch = (ypos-10); ysearch < (ypos+10); ysearch++){
-			 				if(map.getMap()[xsearch][ysearch] != null){
-			 					map.moveObj(xsearch, ysearch, tempdot);
-			 					toggle = 0;
-			 				}
-			 			}
-			 		}
+			 		map.moveObj(xpos, ypos, tempdot);
+			 		toggle = 0;
+			 		System.out.println(toggle);
 			 	}
 			    panel.drawing();
 			}
