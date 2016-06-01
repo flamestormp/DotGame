@@ -17,59 +17,59 @@ public class Runner {
     static int turn = 1;
     
 	public static void main(String[] args){
-		JFrame frame = new JFrame("DotGame");
-		frame.setSize(WIDTH, HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		Panel panel = new Panel();
-		frame.add(panel);
-		panel.drawing();
-		panel.addMouseListener(new MouseListener(){
-			Dot tempdot;
-			public void mouseClicked(MouseEvent e){
-				xpos = e.getX();
-				ypos = e.getY();
-			    System.out.print(xpos+","+ypos +"toggle: ");
-			    if(toggle == 0){
-			    	//tolerance 5 pixels on each side of click
-			 		for(int xsearch = (xpos-10); xsearch < (xpos+10); xsearch++){
-			 			for(int ysearch = (ypos-10); ysearch < (ypos+10); ysearch++){
-			 				if(map.getMap()[xsearch][ysearch] != null){
-			 					tempdot = map.selectObj(xsearch, ysearch, turn);
-			 					if(tempdot != null){
-			 					toggle = 1;
-			 					System.out.println(toggle);
+	
+		
+			final int tol = 11;
+			JFrame frame = new JFrame("DotGame");
+			frame.setSize(WIDTH, HEIGHT);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
+			Panel panel = new Panel();
+			frame.add(panel);
+			panel.drawing();
+			panel.addMouseListener(new MouseListener(){
+				Dot tempdot;
+				public void mouseClicked(MouseEvent e){
+					xpos = e.getX();
+					ypos = e.getY();
+			    	System.out.print(xpos + "," + ypos + ", ");
+			    	if(toggle == 0){
+			    		//tolerance 'tol' pixels on each side of click
+			 			for(int xsearch = (xpos-tol); xsearch < (xpos+tol); xsearch++){
+			 				for(int ysearch = (ypos-tol); ysearch < (ypos+tol); ysearch++){
+			 					if(map.getMap()[xsearch][ysearch] != null){
+			 						tempdot = map.selectObj(xsearch, ysearch, turn);
+			 						if(tempdot != null){
+			 						toggle = 1;
+			 						System.out.println(", toggle: " + toggle);
+			 						}
 			 					}
 			 				}
 			 			}
 			 		}
-			 	}
-			 	else if(toggle == 1){
-			 		map.moveObj(xpos, ypos, tempdot);
-			 		toggle = 0;
+			 		else if(toggle == 1){
+			 			//check to see if move is successful
+			 			if(map.moveObj(xpos, ypos, tempdot) == true){
+			 				toggle = 0;
+			
+			 				if(turn == 0) turn = 1;
+			 				else turn = 0;
 			 		
-			 		if(turn == 0) turn = 1;
-			 		else turn = 0;
-			 		
-			 		System.out.println(toggle);
-			 	}
-			    panel.drawing();
-			}
-			public void mouseEntered(MouseEvent arg0){
-			}
-			public void mouseExited(MouseEvent arg0){
-			}
-			public void mousePressed(MouseEvent arg0){
-			}
-			public void mouseReleased(MouseEvent arg0){
-			}
-		});
-		
-		// game runs until one man standing
-		//while(white_count > 0 || black_count > 0){
-			//panel.drawing(); //refresh
-		//}
-		
+			 				System.out.println(", toggle: " + toggle);
+			 			}
+			 		}
+			    	panel.drawing();
+				}
+				public void mouseEntered(MouseEvent arg0){
+				}
+				public void mouseExited(MouseEvent arg0){
+				}
+				public void mousePressed(MouseEvent arg0){
+				}
+				public void mouseReleased(MouseEvent arg0){
+				}
+			});
+			
 		//announce victor
 		if(white_count == 0) 
 			System.out.println("Black Wins!");
@@ -77,7 +77,3 @@ public class Runner {
 			System.out.println("White Wins!");
 	}
 }
-	
-
- 
- 

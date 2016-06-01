@@ -8,13 +8,12 @@ package refactor;
  */
 
 public class Dot {
-public int ConsumeCount;
-public int Xposition;
-public int Yposition;
-public int Team;
+	private int ConsumeCount;
+	private int Xposition;
+	private int Yposition;
+	public int Team;
 
-final int RANGE = 50;
-
+	//reminder: team 1 is black, team 0 is white
 	public Dot(int consumeCount, int xposition, int yposition, int team) {
 	super();
 	ConsumeCount = consumeCount;
@@ -26,8 +25,8 @@ final int RANGE = 50;
 	public int getConsumeCount() {
 		return ConsumeCount;
 	}
-	public void setConsumeCount(int consumeCount) {
-		ConsumeCount = consumeCount;
+	public void addConsumeCount(int consumeCount) {
+		ConsumeCount += consumeCount;
 	}
 	public int getXposition() {
 		return Xposition;
@@ -44,11 +43,10 @@ final int RANGE = 50;
 
 	// range = size of map - mov
 	public int getRange(){
-		return 1000 - getMov();
+		return 50*ConsumeCount;
 	}
 	// mov = (size of map / consume count)
 	public int getMov(){
 		return 1000/ConsumeCount;
 	}
-	
 }
