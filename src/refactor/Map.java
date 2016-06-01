@@ -19,7 +19,7 @@ public class Map {
 		}
 	}
 	
-	Dot[][] getMap(){
+	public Dot[][] getMap(){
 		return map;
 	}
 	
@@ -37,16 +37,19 @@ public class Map {
 	}
 	
 	public void moveObj(int x, int y, Dot dot){
-		int mov = dot.getMov();
-		//absolute values for absolute differences
-		int xdiff = Math.abs(dot.getXposition() - x);
-		int ydiff = Math.abs(dot.getYposition() - y);
+			if(dot != null){
+			int mov = dot.getMov();
+			//absolute values for absolute differences
+			int xdiff = Math.abs(dot.getXposition() - x);
+			int ydiff = Math.abs(dot.getYposition() - y);
 		
-		if(xdiff <= mov && ydiff <= mov){
-			map[dot.getXposition()][dot.getYposition()] = map[x][y];
-			map[dot.getXposition()][dot.getYposition()] = null;
-		
-			consume(dot);
+			if(xdiff <= mov && ydiff <= mov){
+				map[x][y] = dot;
+				dot.setXposition(x);
+				dot.setYposition(y);
+				map[dot.getXposition()][dot.getYposition()] = null;
+				consume(dot);
+			}
 		}
 	}
 	
@@ -54,17 +57,20 @@ public class Map {
 		//change the dot counts after loop to avoid changing range
 		//while in the process of consumption
 		int blacktemp = 0, whitetemp = 0;
+		int xpos = dot.getXposition(), ypos = dot.getYposition();
 		
 		//search systematically like a box
-		for(int xmin = dot.getXposition()-dot.getRange(); 
-				xmin < dot.getXposition()+dot.getRange(); xmin++){
-			for(int ymin = dot.getYposition()-dot.getRange();
-					ymin < dot.getYposition()+dot.getRange(); ymin++){
-				if(map[xmin][ymin] != null){
-					if(map[xmin][ymin].Team == 0)
+		for(int xmin = xpos-dot.getRange(); 
+				xmin < xpos+dot.getRange(); xmin++){
+			for(int ymin = ypos-dot.getRange();
+					ymin < ypos+dot.getRange(); ymin++){
+				if((map[xmin][ymin] != null) && (xmin != xpos && ymin != ypos)){
+					if(map[xmin][ymin].Team == 0){
 						whitetemp++;
-					else
+					}
+					else{
 						blacktemp++;
+					}
 					map[xmin][ymin] = null;
 				}
 			}

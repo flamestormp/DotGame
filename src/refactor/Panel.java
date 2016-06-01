@@ -3,7 +3,8 @@ import javax.swing.JPanel;
 import java.awt.*;
 
 public class Panel extends JPanel{
-
+	
+	private static final long serialVersionUID = 1L; //something eclipse told me to do
 	Map map = new Map();
 	Dot[][] mapper = map.getMap();
 	
@@ -16,7 +17,11 @@ public class Panel extends JPanel{
 		//background
 		disp.setColor(Color.LIGHT_GRAY);
 		disp.fillRect(0, 0, 1000, 1000);
-		//then dots
+		
+		disp.setColor(Color.RED);
+		disp.fillRect(Runner.xpos, Runner.ypos, 10, 10);
+		
+		
 		for(int x = 0; x < 1000; x++){
 			for(int y = 0; y < 1000; y++){
 				if(mapper[x][y] != null){
@@ -31,7 +36,7 @@ public class Panel extends JPanel{
 							mapper[x][y].getYposition(),10,10);
 					}
 				}
-			}	
+			}
 		}
 	}
 }

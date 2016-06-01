@@ -21,7 +21,8 @@ final int RANGE = 50;
 	Xposition = xposition;
 	Yposition = yposition;
 	Team = team;
-}
+	}
+	
 	public int getConsumeCount() {
 		return ConsumeCount;
 	}
@@ -45,8 +46,7 @@ final int RANGE = 50;
 	public int getRange(){
 		return 1000 - getMov();
 	}
-	
-	// mov = size of map / consume count
+	// mov = (size of map / consume count)
 	public int getMov(){
 		return 1000/ConsumeCount;
 	}
