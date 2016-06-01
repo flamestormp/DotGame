@@ -2,9 +2,16 @@ package refactor;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JFrame;
 
+/*
+ * The main runner has a lot of static variables that the entire
+ * code needs to reference to (such as the status of the game,
+ * the actual playing field, etc.
+ * 
+ * Graphics is other part of the Runner, but the drawing function
+ * and behavior is in the Panel class.
+ */
 public class Runner {
 	//white = 0, black = 1
 	//loser is the one who hits 0 first
@@ -26,7 +33,7 @@ public class Runner {
 			Panel panel = new Panel();
 			frame.add(panel);
 			panel.drawing();
-			
+			//entire game is mouse driven, ergo the convoluted mouselistener
 			panel.addMouseListener(new MouseListener(){
 				Dot tempdot;
 				public void mouseClicked(MouseEvent e){
@@ -51,10 +58,9 @@ public class Runner {
 			 			//check to see if move is successful
 			 			if(map.moveObj(xpos, ypos, tempdot) == true){
 			 				toggle = 0;
-			
+			 				// change turn after successful move
 			 				if(turn == 0) turn = 1;
 			 				else turn = 0;
-			 		
 			 				System.out.println(", toggle: " + toggle);
 			 			}
 			 		}

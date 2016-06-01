@@ -2,16 +2,18 @@ package refactor;
 import javax.swing.JPanel;
 import java.awt.*;
 
+/*
+ * Draws: background, turn bar, dots, movement range indicator
+ */
 public class Panel extends JPanel{
 	
 	private static final long serialVersionUID = 1L; //something eclipse told me to do
-	Map map = Runner.map;
-	Dot[][] mapper = map.getMap();
+	Dot[][] mapper = Runner.map.getMap();
 	
 	public void drawing(){
 		repaint();
 	}
-
+	
 	public void paintComponent(Graphics disp){
 		super.paintComponent(disp);
 		//background
@@ -30,10 +32,11 @@ public class Panel extends JPanel{
 			for(int y = 0; y < 1000; y++){
 				
 				if(mapper[x][y] != null){
+					//init vars
 					xpos = mapper[x][y].getXposition();
 					ypos = mapper[x][y].getYposition();
 					mov = mapper[x][y].getMov();
-					
+					//draw the dots
 					if(mapper[x][y].Team == 0){
 						disp.setColor(Color.WHITE);
 						disp.fillRect(xpos,ypos,10,10);
@@ -42,7 +45,7 @@ public class Panel extends JPanel{
 						disp.setColor(Color.BLACK);
 						disp.fillRect(xpos,ypos,10,10);
 					}
-					
+					//display movement range
 					if(mapper[x][y].getToggle() == true){
 						disp.setColor(new Color(15,15,25,10));
 						disp.fillRect(xpos - mov, ypos - mov, 2*mov, 2*mov);
