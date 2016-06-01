@@ -17,7 +17,6 @@ public class Runner {
     static int turn = 1;
     
 	public static void main(String[] args){
-	
 		
 			final int tol = 11;
 			JFrame frame = new JFrame("DotGame");
@@ -27,6 +26,7 @@ public class Runner {
 			Panel panel = new Panel();
 			frame.add(panel);
 			panel.drawing();
+			
 			panel.addMouseListener(new MouseListener(){
 				Dot tempdot;
 				public void mouseClicked(MouseEvent e){
@@ -69,11 +69,5 @@ public class Runner {
 				public void mouseReleased(MouseEvent arg0){
 				}
 			});
-			
-		//announce victor
-		if(white_count == 0) 
-			System.out.println("Black Wins!");
-		else if(black_count == 0)
-			System.out.println("White Wins!");
 	}
 }

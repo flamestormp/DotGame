@@ -12,6 +12,7 @@ public class Dot {
 	private int Xposition;
 	private int Yposition;
 	public int Team;
+	private boolean toggle = false;
 
 	//reminder: team 1 is black, team 0 is white
 	public Dot(int consumeCount, int xposition, int yposition, int team) {
@@ -48,5 +49,13 @@ public class Dot {
 	// mov = (size of map / consume count)
 	public int getMov(){
 		return 1000/ConsumeCount;
+	}
+
+	public boolean getToggle() {
+		return toggle;
+	}
+	
+	public void setToggle(boolean T){
+		toggle = T;
 	}
 }

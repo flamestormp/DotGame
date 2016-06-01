@@ -35,6 +35,7 @@ public class Map {
 				break; // kills loop
 			}
 		}
+		map[x][y].setToggle(true);
 		return map[x][y];
 	}
 	
@@ -53,6 +54,7 @@ public class Map {
 				dot.setXposition(x);
 				dot.setYposition(y);
 				consume(dot);
+				map[x][y].setToggle(false);
 				return true;
 			}
 			return false;
