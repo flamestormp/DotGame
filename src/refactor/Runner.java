@@ -1,5 +1,4 @@
 package refactor;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
@@ -7,14 +6,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-
 import javax.swing.JFrame;
 
 /*
  *The runner class allows for the other classes to interact via static variables 
- * 
  * the runner produces the data for the graphics which are displayed by the panel
  */
 public class Runner {
@@ -35,7 +30,6 @@ public class Runner {
 		try {
 			fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			String winner;
 			JFrame frame = new JFrame("DotGame");
 			frame.setSize(WIDTH, HEIGHT);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
