@@ -3,7 +3,7 @@ package refactor;
  * Contains the array of dots and methods to deal with dots
  */
 public class Map {
-	
+	final int SIZE = 1000;
 	private Dot[][] map = new Dot[1000][1000];
 	
 	public Map(){

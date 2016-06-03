@@ -1,12 +1,7 @@
 package refactor;
-
 /*
- * Class is for Dot. A dot can be on one of two teams.
- * A dot has a position on an x,y grid. A dot has a count
- * of the # of other dots consumed. A dot also has range
- * of movement and range of consumption.
- */
-
+Dot class for the Dot object tracks consumption position toggle and team
+*/
 public class Dot {
 	private int ConsumeCount;
 	private int Xposition;
@@ -14,7 +9,7 @@ public class Dot {
 	public int Team;
 	private boolean toggle = false;
 
-	//reminder: team 1 is black, team 0 is white
+	//team 1 is black team 0 is white
 	public Dot(int consumeCount, int xposition, int yposition, int team) {
 	super();
 	ConsumeCount = consumeCount;
@@ -48,13 +43,11 @@ public class Dot {
 	}
 	// mov = (size of map / consume count)
 	public int getMov(){
-		return 1000/ConsumeCount;
+		return 1000/(2*ConsumeCount);
 	}
-
 	public boolean getToggle() {
 		return toggle;
 	}
-	
 	public void setToggle(boolean T){
 		toggle = T;
 	}
