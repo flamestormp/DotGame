@@ -20,8 +20,8 @@ public class Runner {
 	static Map map = new Map();
 	static int toggle = 0; // 0 = unselected, 1 = selected
 	static int xpos;
-    static int ypos;
-    static int turn = 1;
+	static int ypos;
+	static int turn = 1;
     
 	public static void main(String[] args){
 		final int tol = 30;
